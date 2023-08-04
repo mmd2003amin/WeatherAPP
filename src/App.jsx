@@ -3,7 +3,7 @@ import Weather from './Weather';
 
 const App = () => {
   return (
-    <div className="pt-32 bg-blue-400">
+    <div className="pt-28">
       <Weather />
     </div>
   );
