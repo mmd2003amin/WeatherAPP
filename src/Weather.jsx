@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Search from "./Search";
 import Data from "./Data";
+import loading from "./assets/loading.gif";
 
 const Weather = () => {
   const [name, setName] = useState("");
@@ -23,10 +24,13 @@ const Weather = () => {
   };
 
   return (
-    <form className="cart" onSubmit={submitHandler}>
+    <form
+      className="border border-solid border-white rounded-lg w-fit mx-auto p-8 min-h-[500px] min-w-fit sm:min-w-[380px] bg-[#0a62fa]"
+      onSubmit={submitHandler}
+    >
       <Search setName={setName} name={name} />
 
-      {data.length > 0 &&
+      {data.length > 0 ? (
         data.map((item) => (
           <Data
             key={Math.random() * 100}
@@ -36,7 +40,10 @@ const Weather = () => {
             wind={item.wind.speed}
             sky={item.weather[0]["description"]}
           />
-        ))}
+        ))
+      ) : (
+        <img src={loading} alt="loading" className="w-28 mx-auto mt-32" />
+      )}
     </form>
   );
 };
